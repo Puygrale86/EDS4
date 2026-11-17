@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTRAÎNEMENT – DEVOIR N° 4 : ADDITIONS ET SOUSTRACTIONS</title>
+  <style>
+    /* ==========================================================================
+       STYLES AUTONOMES — FICHE DE MATHÉMATIQUES 6ÈME (MOBILE-FIRST)
+       ========================================================================== */
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border-light: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --text-dark: #0f172a;
+      --text-body: #1e293b;
+      --text-muted: #475569;
+
+      --primary: #3730a3;
+      --primary-hover: #312e81;
+      --primary-soft: #eef2ff;
+      --primary-border: #c7d2fe;
+
+      --emerald: #047857;
+      --emerald-hover: #065f46;
+      --emerald-soft: #ecfdf5;
+      --emerald-border: #a7f3d0;
+
+      --sky: #0369a1;
+      --sky-soft: #e0f2fe;
+
+      --amber-soft: #fef3c7;
+      --amber-border: #f59e0b;
+      --amber-text: #92400e;
+
+      --shadow-card: 0 2px 10px rgba(15, 23, 42, 0.05);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-body);
+      line-height: 1.6;
+      padding: 14px 12px 44px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       EN-TÊTE DE LA FICHE & CONSIGNE CAHIER
+       ========================================================================== */
+    .sheet-header {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-top: 5px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .header-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .sheet-title {
+      font-size: clamp(1.18rem, 3.2vw, 1.6rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .consigne-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid #1d4ed8;
+      border-radius: var(--radius-md);
+      color: #1e3a8a;
+      font-size: 14.5px;
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* ==========================================================================
+       BOUTONS TACTILES (MIN-HEIGHT 44PX)
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.16s ease, transform 0.1s ease, border-color 0.16s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-subtle);
+      color: var(--text-dark);
+      border-color: var(--border-medium);
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-new {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+
+    .btn-new:hover {
+      background: #e0e7ff;
+    }
+
+    .btn-corr {
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      border-color: var(--emerald-border);
+    }
+
+    .btn-corr:hover {
+      background: #d1fae5;
+    }
+
+    .btn-corr.is-open {
+      background: var(--emerald);
+      color: #ffffff;
+      border-color: var(--emerald);
+    }
+
+    /* ==========================================================================
+       CARTES D'EXERCICES
+       ========================================================================== */
+    .exercises-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .exercise-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .exo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .exo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .exo-badge-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .exo-points {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #ffffff;
+      border: 1px solid var(--border-medium);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .exo-body {
+      padding: 18px;
+      font-size: 15.5px;
+      color: var(--text-body);
+    }
+
+    .exo-body p + p {
+      margin-top: 10px;
+    }
+
+    .math-highlight {
+      font-weight: 700;
+      color: var(--text-dark);
+      background: #f1f5f9;
+      padding: 1px 6px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .question-text {
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .ops-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+
+    .exo-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 18px 18px;
+    }
+
+    /* ==========================================================================
+       PANNEAU DE CORRECTION ÉMERAUDE
+       ========================================================================== */
+    .correction-panel {
+      display: none;
+      background: linear-gradient(180deg, #ecfdf5 0%, #f8fafc 100%);
+      border-top: 1px solid var(--emerald-border);
+      border-left: 5px solid var(--emerald);
+      padding: 18px;
+    }
+
+    .correction-panel.open {
+      display: block;
+    }
+
+    .corr-header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #d1fae5;
+      color: #065f46;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .corr-block {
+      background: #ffffff;
+      border: 1px solid #d1fae5;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .corr-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .corr-step-title {
+      font-weight: 700;
+      color: #065f46;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .corr-line {
+      margin-top: 5px;
+      font-size: 15px;
+      color: var(--text-body);
+    }
+
+    .corr-formula {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-dark);
+    }
+
+    .corr-conclusion {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #d1fae5;
+      border-radius: 8px;
+      color: #064e3b;
+      font-weight: 700;
+      font-size: 15.5px;
+    }
+
+    /* ==========================================================================
+       LIGNES DE TEMPS SVG RESPONSIVES
+       ========================================================================== */
+    .timeline-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 12px 8px 8px;
+      margin-bottom: 12px;
+    }
+
+    .timeline-caption {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .timeline-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       OPÉRATIONS POSÉES EN COLONNES (CSS GRID TABULAIRE MONOSPACE)
+       ========================================================================== */
+    .posed-ops-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .posed-op-card {
+      flex: 1 1 260px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .posed-op-equation {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--border-medium);
+    }
+
+    .col-grid-wrapper {
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .col-grid {
+      display: inline-grid;
+      align-items: center;
+      justify-items: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      row-gap: 2px;
+    }
+
+    .cg-cell {
+      width: 26px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .cg-rank {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      height: 20px;
+    }
+
+    .cg-carry {
+      font-size: 11px;
+      font-weight: 800;
+      color: #dc2626;
+      height: 20px;
+    }
+
+    .cg-carry-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #b91c1c;
+      font-size: 10.5px;
+    }
+
+    .cg-op-sign {
+      color: var(--primary);
+      font-weight: 800;
+      padding-right: 4px;
+    }
+
+    .cg-comma {
+      width: 14px;
+      font-weight: 800;
+      color: #dc2626;
+    }
+
+    .zero-added {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 25px;
+      background: var(--amber-soft);
+      border: 1.5px dashed var(--amber-border);
+      color: var(--amber-text);
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .cg-bar {
+      grid-column: 1 / -1;
+      width: 100%;
+      height: 3px;
+      background-color: var(--text-dark);
+      border-radius: 2px;
+      margin: 3px 0;
+    }
+
+    .cg-res {
+      color: #065f46;
+      font-weight: 800;
+    }
+
+    .legend-zero {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       BANNIÈRE TOAST DISCRÈTE & PIED DE PAGE
+       ========================================================================== */
+    .toast-msg {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+      z-index: 100;
+      text-align: center;
+      max-width: 92vw;
+    }
+
+    .toast-msg.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .sheet-footer {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       ADAPTATION MOBILE (< 600PX)
+       ========================================================================== */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px 8px 36px;
+      }
+
+      .sheet-header {
+        padding: 16px 14px;
+      }
+
+      .header-actions {
+        flex-direction: column;
+      }
+
+      .header-actions .btn {
+        width: 100%;
+      }
+
+      .exo-header {
+        padding: 12px 14px;
+      }
+
+      .exo-body {
+        padding: 14px;
+        font-size: 15px;
+      }
+
+      .exo-actions {
+        flex-direction: column;
+        padding: 0 14px 14px;
+      }
+
+      .exo-actions .btn {
+        width: 100%;
+      }
+
+      .correction-panel {
+        padding: 14px;
+      }
+
+      .posed-ops-container {
+        flex-direction: column;
+      }
+
+      .posed-op-card {
+        flex: 1 1 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- EN-TÊTE DE LA FICHE -->
+    <header class="sheet-header">
+      <div class="header-top-row">
+        <span class="level-badge">Niveau 6ème • Note sur 20</span>
+      </div>
+      <h1 class="sheet-title">ENTRAÎNEMENT – DEVOIR N° 4 : ADDITIONS ET SOUSTRACTIONS</h1>
+
+      <div class="consigne-box">
+        <strong>Consigne :</strong> Fais tes recherches, tes lignes de temps et tes opérations posées sur ton cahier, puis clique sur « Afficher la correction » pour vérifier ton travail.
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary" id="btn-regen-all">
+          🔄 Tout régénérer
+        </button>
+      </div>
+    </header>
+
+    <!-- LISTE DES 5 EXERCICES (RENDU STATIQUE INITIAL GARANTI SANS PAGE BLANCHE) -->
+    <section class="exercises-list" id="exercises-container">
+      <!-- EXERCICE 1 -->
+      <article class="exercise-card" id="card-exo-1">
+        <div class="exo-header">
+          <h2 class="exo-title">
+            <span class="exo-badge-num">1</span>
+            Exercice 1
+          </h2>
+          <span class="exo-points">/ 4 points</span>
+        </div>
+        <div class="exo-body" id="statement-exo-1">
+          <p>Chloé est entrée dans la salle de cinéma à <span class="math-highlight">14 h 38</span> et le film s'est terminé à <span class="math-highlight">17 h 15</span>.</p>
+          <p class="question-text">Calculer la durée de la séance.</p>
+        </div>
+        <div class="exo-actions">
+          <button type="button" class="btn btn-new" data-action="new" data-exo="1">🎲 Nouvel énoncé</button>
+          <button type="button" class="btn btn-corr" data-action="corr" data-exo="1" id="btn-corr-1">👁️ Afficher la correction</button>
+        </div>
+        <div class="correction-panel" id="corr-exo-1"></div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article class="exercise-card" id="card-exo-2">
+        <div class="exo-header">
+          <h2 class="exo-title">
+            <span class="exo-badge-num">2</span>
+            Exercice 2
+          </h2>
+          <span class="exo-points">/ 4 points</span>
+        </div>
+        <div class="exo-body" id="statement-exo-2">
+          <p>Sarah prend le train avec son frère pour rejoindre leurs grands-parents. La durée totale du trajet est de <span class="math-highlight">4 h 50 min</span>. Le train arrive en gare à <span class="math-highlight">13 h 15</span>.</p>
+          <p class="question-text">À quelle heure le train est-il parti ? Explique ton raisonnement.</p>
+        </div>
+        <div class="exo-actions">
+          <button type="button" class="btn btn-new" data-action="new" data-exo="2">🎲 Nouvel énoncé</button>
+          <button type="button" class="btn btn-corr" data-action="corr" data-exo="2" id="btn-corr-2">👁️ Afficher la correction</button>
+        </div>
+        <div class="correction-panel" id="corr-exo-2"></div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article class="exercise-card" id="card-exo-3">
+        <div class="exo-header">
+          <h2 class="exo-title">
+            <span class="exo-badge-num">3</span>
+            Exercice 3
+          </h2>
+          <span class="exo-points">/ 4 points</span>
+        </div>
+        <div class="exo-body" id="statement-exo-3">
+          <p>À la boulangerie, Madame Martin achète une tarte aux fraises et un pain complet. Elle paie avec un billet de <span class="math-highlight">20 €</span> et la boulangère lui rend <span class="math-highlight">3,85 €</span>. Sachant que le pain complet coûte <span class="math-highlight">2,40 €</span> :</p>
+          <p class="question-text">Quel est le prix de la tarte aux fraises ?</p>
+        </div>
+        <div class="exo-actions">
+          <button type="button" class="btn btn-new" data-action="new" data-exo="3">🎲 Nouvel énoncé</button>
+          <button type="button" class="btn btn-corr" data-action="corr" data-exo="3" id="btn-corr-3">👁️ Afficher la correction</button>
+        </div>
+        <div class="correction-panel" id="corr-exo-3"></div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article class="exercise-card" id="card-exo-4">
+        <div class="exo-header">
+          <h2 class="exo-title">
+            <span class="exo-badge-num">4</span>
+            Exercice 4
+          </h2>
+          <span class="exo-points">/ 4 points</span>
+        </div>
+        <div class="exo-body" id="statement-exo-4">
+          <p>La coopérative d'une classe de 6ème dispose d'une cagnotte de <span class="math-highlight">245,8 €</span> pour organiser une sortie au musée. Le devis du transport en car s'élève à <span class="math-highlight">312,5 €</span>.</p>
+          <p class="question-text">1. Combien d'argent manque-t-il à la classe pour payer ce transport ?</p>
+          <p>Finalement, la classe décide de prendre le train régional, ce qui coûte <span class="math-highlight">189,4 €</span> pour l'ensemble du groupe.</p>
+          <p class="question-text">2. Quelle somme d'argent restera-t-il dans la cagnotte après avoir payé les billets de train ?</p>
+        </div>
+        <div class="exo-actions">
+          <button type="button" class="btn btn-new" data-action="new" data-exo="4">🎲 Nouvel énoncé</button>
+          <button type="button" class="btn btn-corr" data-action="corr" data-exo="4" id="btn-corr-4">👁️ Afficher la correction</button>
+        </div>
+        <div class="correction-panel" id="corr-exo-4"></div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article class="exercise-card" id="card-exo-5">
+        <div class="exo-header">
+          <h2 class="exo-title">
+            <span class="exo-badge-num">5</span>
+            Exercice 5
+          </h2>
+          <span class="exo-points">/ 4 points</span>
+        </div>
+        <div class="exo-body" id="statement-exo-5">
+          <p class="question-text">Poser et effectuer les opérations suivantes :</p>
+          <div class="ops-list">
+            <div>1) 745,68 + 684,9 =</div>
+            <div>2) 534,6 − 48,875 =</div>
+          </div>
+        </div>
+        <div class="exo-actions">
+          <button type="button" class="btn btn-new" data-action="new" data-exo="5">🎲 Nouvel énoncé</button>
+          <button type="button" class="btn btn-corr" data-action="corr" data-exo="5" id="btn-corr-5">👁️ Afficher la correction</button>
+        </div>
+        <div class="correction-panel" id="corr-exo-5"></div>
+      </article>
+    </section>
+
+    <footer class="sheet-footer">
+      Entraînement interactif 6ème — Clique sur « 🎲 Nouvel énoncé » pour générer de nouveaux nombres à volonté.
+    </footer>
+  </main>
+
+  <div class="toast-msg" id="toast-msg" role="status" aria-live="polite"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        /* ======================================================================
+           1. OUTILS DE FORMATAGE ET DE CALCUL EXACT
+           ====================================================================== */
+        function randInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function formatHeure(h, m) {
+          var mm = m < 10 ? "0" + m : String(m);
+          return h + " h " + mm;
+        }
+
+        function formatDuree(h, m) {
+          if (h === 0) {
+            return m + " min";
+          }
+          if (m === 0) {
+            return h + " h";
+          }
+          var mm = m < 10 ? "0" + m : String(m);
+          return h + " h " + mm + " min";
+        }
+
+        function formatFr(num, decimals) {
+          var fixed = typeof decimals === "number" ? num.toFixed(decimals) : String(num);
+          return fixed.replace(".", ",");
+        }
+
+        function formatSpacedInt(intStr) {
+          return intStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        function formatSpacedDecimal(decStr) {
+          var parts = decStr.split(",");
+          var intPart = formatSpacedInt(parts[0]);
+          return parts.length > 1 ? intPart + "," + parts[1] : intPart;
+        }
+
+        /* ======================================================================
+           2. ÉTAT INITIAL DES 5 EXERCICES (VALEURS EXACTES DE LA FICHE)
+           ====================================================================== */
+        var state = {
+          1: {
+            data: { h1: 14, m1: 38, h2: 17, m2: 15 },
+            open: false
+          },
+          2: {
+            data: { dh: 4, dm: 50, harr: 13, marr: 15 },
+            open: false
+          },
+          3: {
+            data: { billet: 20, rendu: 3.85, pain: 2.40 },
+            open: false
+          },
+          4: {
+            data: { cagnotte: 245.8, car: 312.5, train: 189.4 },
+            open: false
+          },
+          5: {
+            data: {
+              a1: "745,68",
+              a2: "684,9",
+              s1: "534,6",
+              s2: "48,875"
+            },
+            open: false
+          }
+        };
+
+        /* ======================================================================
+           3. GÉNÉRATEURS DE NOUVEAUX ÉNONCÉS COHÉRENTS
+           ====================================================================== */
+        function generateExo1() {
+          var h1 = randInt(13, 19);
+          var maxM1 = h1 === 19 ? 50 : 52;
+          var m1 = randInt(12, maxM1);
+          var m2 = randInt(5, m1 - 5);
+          var hoursSpan = randInt(1, 3);
+          var h2 = h1 + hoursSpan;
+          return { h1: h1, m1: m1, h2: h2, m2: m2 };
+        }
+
+        function generateExo2() {
+          var dh = randInt(2, 5);
+          var dm = randInt(25, 55);
+          var harr = randInt(12, 21);
+          var marr = randInt(5, 20);
+          return { dh: dh, dm: dm, harr: harr, marr: marr };
+        }
+
+        function generateExo3() {
+          var billet = Math.random() < 0.75 ? 20 : 50;
+          var renduCents = randInt(43, 137) * 5; // 2,15 € à 6,85 €
+          var painCents = randInt(36, 68) * 5;   // 1,80 € à 3,40 €
+          return {
+            billet: billet,
+            rendu: renduCents / 100,
+            pain: painCents / 100
+          };
+        }
+
+        function generateExo4() {
+          var cagTenths = randInt(2104, 3608);
+          var busExtra = randInt(423, 1187);
+          var trainLess = randInt(342, 896);
+          return {
+            cagnotte: cagTenths / 10,
+            car: (cagTenths + busExtra) / 10,
+            train: (cagTenths - trainLess) / 10
+          };
+        }
+
+        function generateExo5() {
+          // 1) Addition avec nombres de décimales différents
+          var modeAdd = randInt(1, 3);
+          var intA1 = randInt(124, 945);
+          var intA2 = randInt(118, 895);
+          var a1 = "";
+          var a2 = "";
+
+          if (modeAdd === 1) {
+            var d2 = randInt(12, 98);
+            if (d2 % 10 === 0) { d2 += 3; }
+            var d1 = randInt(1, 9);
+            a1 = intA1 + "," + d2;
+            a2 = intA2 + "," + d1;
+          } else if (modeAdd === 2) {
+            var d1b = randInt(1, 9);
+            var d3 = randInt(114, 987);
+            if (d3 % 10 === 0) { d3 += 4; }
+            a1 = intA1 + "," + d1b;
+            a2 = intA2 + "," + d3;
+          } else {
+            var d3b = randInt(125, 975);
+            if (d3b % 10 === 0) { d3b += 6; }
+            var d2b = randInt(14, 96);
+            if (d2b % 10 === 0) { d2b += 2; }
+            a1 = intA1 + "," + d3b;
+            a2 = intA2 + "," + d2b;
+          }
+
+          // 2) Soustraction A - B (A > B) avec 1 ou 2 décimales pour A et 3 décimales pour B
+          var intS1 = randInt(320, 890);
+          var intS2 = randInt(24, 185);
+          var s1DecCount = Math.random() < 0.7 ? 1 : 2;
+          var s1 = "";
+          if (s1DecCount === 1) {
+            s1 = intS1 + "," + randInt(1, 9);
+          } else {
+            var dS1 = randInt(12, 94);
+            if (dS1 % 10 === 0) { dS1 += 5; }
+            s1 = intS1 + "," + dS1;
+          }
+          var dS2 = randInt(115, 985);
+          if (dS2 % 10 === 0) { dS2 += 5; }
+          var s2 = intS2 + "," + dS2;
+
+          return { a1: a1, a2: a2, s1: s1, s2: s2 };
+        }
+
+        /* ======================================================================
+           4. CONSTRUCTEURS DES LIGNES DE TEMPS SVG (EXERCICES 1 & 2)
+           ====================================================================== */
+        function buildTimelineExo1SVG(d) {
+          var minToNext = 60 - d.m1;
+          var nextHour = d.h1 + 1;
+          var fullHours = d.h2 - nextHour;
+          var endMin = d.m2;
+
+          var jumps = [];
+          jumps.push({
+            from: formatHeure(d.h1, d.m1),
+            to: formatHeure(nextHour, 0),
+            label: "+ " + minToNext + " min",
+            color: "#0369a1",
+            fill: "#e0f2fe"
+          });
+
+          if (fullHours > 0) {
+            jumps.push({
+              from: formatHeure(nextHour, 0),
+              to: formatHeure(d.h2, 0),
+              label: "+ " + fullHours + " h",
+              color: "#047857",
+              fill: "#d1fae5"
+            });
+          }
+
+          jumps.push({
+            from: formatHeure(d.h2, 0),
+            to: formatHeure(d.h2, d.m2),
+            label: "+ " + endMin + " min",
+            color: "#0369a1",
+            fill: "#e0f2fe"
+          });
+
+          var count = jumps.length;
+          var xStart = 68;
+          var xEnd = 572;
+          var stepX = (xEnd - xStart) / count;
+          var axisY = 115;
+
+          var nodes = [jumps[0].from];
+          for (var i = 0; i < count; i++) {
+            nodes.push(jumps[i].to);
+          }
+
+          var svg = "";
+          svg += "<div class=\"timeline-box\">";
+          svg += "<div class=\"timeline-caption\">Ligne de temps (lecture de gauche à droite)</div>";
+          svg += "<svg class=\"timeline-svg\" viewBox=\"0 0 640 165\" role=\"img\" aria-label=\"Ligne de temps de la séance\">";
+          svg += "<defs>";
+          for (var j = 0; j < count; j++) {
+            svg += "<marker id=\"arr-r-" + j + "\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6.5\" refY=\"3.5\" orient=\"auto\">";
+            svg += "<path d=\"M0,0.5 L7,3.5 L0,6.5 Z\" fill=\"" + jumps[j].color + "\"></path>";
+            svg += "</marker>";
+          }
+          svg += "</defs>";
+
+          // Axe horizontal
+          svg += "<line x1=\"38\" y1=\"" + axisY + "\" x2=\"602\" y2=\"" + axisY + "\" stroke=\"#94a3b8\" stroke-width=\"2.5\" stroke-linecap=\"round\"></line>";
+
+          // Sauts courbes au-dessus de l'axe
+          for (var k = 0; k < count; k++) {
+            var x1 = xStart + k * stepX;
+            var x2 = xStart + (k + 1) * stepX;
+            var midX = (x1 + x2) / 2;
+            var peakY = 26;
+            svg += "<path d=\"M " + (x1 + 5) + " " + (axisY - 6) + " Q " + midX + " " + peakY + " " + (x2 - 8) + " " + (axisY - 8) + "\" fill=\"none\" stroke=\"" + jumps[k].color + "\" stroke-width=\"2.6\" marker-end=\"url(#arr-r-" + k + ")\"></path>";
+            svg += "<rect x=\"" + (midX - 42) + "\" y=\"" + (peakY + 4) + "\" width=\"84\" height=\"24\" rx=\"12\" fill=\"" + jumps[k].fill + "\" stroke=\"" + jumps[k].color + "\" stroke-width=\"1.4\"></rect>";
+            svg += "<text x=\"" + midX + "\" y=\"" + (peakY + 20) + "\" text-anchor=\"middle\" font-family=\"ui-monospace, monospace\" font-size=\"12.5\" font-weight=\"700\" fill=\"" + jumps[k].color + "\">" + jumps[k].label + "</text>";
+          }
+
+          // Repères horaires
+          for (var n = 0; n < nodes.length; n++) {
+            var nx = xStart + n * stepX;
+            var isEnd = n === 0 || n === nodes.length - 1;
+            var fillDot = isEnd ? "#3730a3" : "#ffffff";
+            var strokeDot = isEnd ? "#3730a3" : "#475569";
+            var weightTxt = isEnd ? "800" : "600";
+            svg += "<line x1=\"" + nx + "\" y1=\"" + (axisY - 7) + "\" x2=\"" + nx + "\" y2=\"" + (axisY + 7) + "\" stroke=\"" + strokeDot + "\" stroke-width=\"2\"></line>";
+            svg += "<circle cx=\"" + nx + "\" cy=\"" + axisY + "\" r=\"5\" fill=\"" + fillDot + "\" stroke=\"" + strokeDot + "\" stroke-width=\"2.2\"></circle>";
+            svg += "<text x=\"" + nx + "\" y=\"" + (axisY + 26) + "\" text-anchor=\"middle\" font-family=\"ui-monospace, monospace\" font-size=\"13.5\" font-weight=\"" + weightTxt + "\" fill=\"#0f172a\">" + nodes[n] + "</text>";
+          }
+
+          svg += "</svg></div>";
+          return svg;
+        }
+
+        function buildTimelineExo2SVG(d) {
+          var remMin = d.dm - d.marr;
+          var midHour = d.harr - d.dh;
+          var depHour = midHour - 1;
+          var depMin = 60 - remMin;
+
+          // Sauts de droite à gauche (on remonte le temps)
+          var jumps = [
+            {
+              label: "- " + d.marr + " min",
+              color: "#0369a1",
+              fill: "#e0f2fe"
+            },
+            {
+              label: "- " + d.dh + " h",
+              color: "#047857",
+              fill: "#d1fae5"
+            },
+            {
+              label: "- " + remMin + " min",
+              color: "#0369a1",
+              fill: "#e0f2fe"
+            }
+          ];
+
+          // Points de gauche (Départ) à droite (Arrivée)
+          var points = [
+            { time: formatHeure(depHour, depMin), tag: "Départ", highlight: "#047857" },
+            { time: formatHeure(midHour, 0), tag: "", highlight: "" },
+            { time: formatHeure(d.harr, 0), tag: "", highlight: "" },
+            { time: formatHeure(d.harr, d.marr), tag: "Arrivée", highlight: "#3730a3" }
+          ];
+
+          var xLeft = 68;
+          var xRight = 572;
+          var stepX = (xRight - xLeft) / 3;
+          var axisY = 112;
+
+          var svg = "";
+          svg += "<div class=\"timeline-box\">";
+          svg += "<div class=\"timeline-caption\">Ligne de temps en remontant le temps (de droite à gauche)</div>";
+          svg += "<svg class=\"timeline-svg\" viewBox=\"0 0 640 165\" role=\"img\" aria-label=\"Ligne de temps en remontant depuis l'arrivée\">";
+          svg += "<defs>";
+          for (var j = 0; j < 3; j++) {
+            svg += "<marker id=\"arr-l-" + j + "\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6.5\" refY=\"3.5\" orient=\"auto\">";
+            svg += "<path d=\"M0,0.5 L7,3.5 L0,6.5 Z\" fill=\"" + jumps[j].color + "\"></path>";
+            svg += "</marker>";
+          }
+          svg += "</defs>";
+
+          svg += "<line x1=\"38\" y1=\"" + axisY + "\" x2=\"602\" y2=\"" + axisY + "\" stroke=\"#94a3b8\" stroke-width=\"2.5\" stroke-linecap=\"round\"></line>";
+
+          // Arcs courbes orientés vers la gauche
+          for (var k = 0; k < 3; k++) {
+            var xr = xRight - k * stepX;
+            var xl = xRight - (k + 1) * stepX;
+            var midX = (xr + xl) / 2;
+            var peakY = 24;
+            svg += "<path d=\"M " + (xr - 5) + " " + (axisY - 6) + " Q " + midX + " " + peakY + " " + (xl + 8) + " " + (axisY - 8) + "\" fill=\"none\" stroke=\"" + jumps[k].color + "\" stroke-width=\"2.6\" marker-end=\"url(#arr-l-" + k + ")\"></path>";
+            svg += "<rect x=\"" + (midX - 42) + "\" y=\"" + (peakY + 4) + "\" width=\"84\" height=\"24\" rx=\"12\" fill=\"" + jumps[k].fill + "\" stroke=\"" + jumps[k].color + "\" stroke-width=\"1.4\"></rect>";
+            svg += "<text x=\"" + midX + "\" y=\"" + (peakY + 20) + "\" text-anchor=\"middle\" font-family=\"ui-monospace, monospace\" font-size=\"12.5\" font-weight=\"700\" fill=\"" + jumps[k].color + "\">" + jumps[k].label + "</text>";
+          }
+
+          // Repères horaires
+          for (var n = 0; n < points.length; n++) {
+            var nx = xLeft + n * stepX;
+            var pt = points[n];
+            var dotFill = pt.highlight ? pt.highlight : "#ffffff";
+            var dotStroke = pt.highlight ? pt.highlight : "#475569";
+            var txtWeight = pt.highlight ? "800" : "600";
+            svg += "<line x1=\"" + nx + "\" y1=\"" + (axisY - 7) + "\" x2=\"" + nx + "\" y2=\"" + (axisY + 7) + "\" stroke=\"" + dotStroke + "\" stroke-width=\"2\"></line>";
+            svg += "<circle cx=\"" + nx + "\" cy=\"" + axisY + "\" r=\"5\" fill=\"" + dotFill + "\" stroke=\"" + dotStroke + "\" stroke-width=\"2.2\"></circle>";
+            svg += "<text x=\"" + nx + "\" y=\"" + (axisY + 24) + "\" text-anchor=\"middle\" font-family=\"ui-monospace, monospace\" font-size=\"13.5\" font-weight=\"" + txtWeight + "\" fill=\"#0f172a\">" + pt.time + "</text>";
+            if (pt.tag) {
+              svg += "<text x=\"" + nx + "\" y=\"" + (axisY + 41) + "\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"" + dotStroke + "\">(" + pt.tag + ")</text>";
+            }
+          }
+
+          svg += "</svg></div>";
+          return svg;
+        }
+
+        /* ======================================================================
+           5. CONSTRUCTEUR DE GRILLES D'OPÉRATIONS POSÉES EN COLONNES
+           ====================================================================== */
+        function buildColumnOperationHTML(op1Str, op2Str, operatorChar, labelPrefix) {
+          var p1 = op1Str.split(",");
+          var p2 = op2Str.split(",");
+          var int1 = p1[0];
+          var dec1 = p1.length > 1 ? p1[1] : "";
+          var int2 = p2[0];
+          var dec2 = p2.length > 1 ? p2[1] : "";
+
+          var maxDec = Math.max(dec1.length, dec2.length);
+          var paddedDec1 = dec1;
+          var paddedDec2 = dec2;
+          while (paddedDec1.length < maxDec) { paddedDec1 += "0"; }
+          while (paddedDec2.length < maxDec) { paddedDec2 += "0"; }
+
+          var scale = Math.pow(10, maxDec);
+          var val1 = parseInt(int1, 10) * scale + (maxDec > 0 ? parseInt(paddedDec1, 10) : 0);
+          var val2 = parseInt(int2, 10) * scale + (maxDec > 0 ? parseInt(paddedDec2, 10) : 0);
+          var resVal = operatorChar === "+" ? val1 + val2 : val1 - val2;
+
+          var resRaw = String(resVal);
+          while (resRaw.length <= maxDec) {
+            resRaw = "0" + resRaw;
+          }
+          var resInt = maxDec > 0 ? resRaw.slice(0, resRaw.length - maxDec) : resRaw;
+          var resDec = maxDec > 0 ? resRaw.slice(resRaw.length - maxDec) : "";
+
+          var maxInt = Math.max(int1.length, int2.length, resInt.length);
+          var totalDigits = maxInt + maxDec;
+
+          // Calcul des retenues pour l'addition
+          var carries = [];
+          for (var c = 0; c < totalDigits; c++) {
+            carries.push(0);
+          }
+
+          var full1 = int1.padStart(maxInt, "0") + paddedDec1;
+          var full2 = int2.padStart(maxInt, "0") + paddedDec2;
+
+          if (operatorChar === "+") {
+            var carry = 0;
+            for (var idx = totalDigits - 1; idx >= 1; idx--) {
+              var sum = parseInt(full1[idx], 10) + parseInt(full2[idx], 10) + carry;
+              if (sum >= 10) {
+                carry = 1;
+                carries[idx - 1] = 1;
+              } else {
+                carry = 0;
+              }
+            }
+          }
+
+          // Définition des colonnes CSS Grid
+          // Col 0 : signe (+ / -)
+          // Col 1..maxInt : partie entière
+          // Col comma (si maxDec > 0) : virgule
+          // Col decimal : partie décimale
+          var colWidths = ["26px"];
+          for (var ci = 0; ci < maxInt; ci++) {
+            colWidths.push("26px");
+          }
+          if (maxDec > 0) {
+            colWidths.push("14px");
+            for (var cd = 0; cd < maxDec; cd++) {
+              colWidths.push("26px");
+            }
+          }
+          var gridTemplate = colWidths.join(" ");
+
+          // En-têtes des rangs (M, C, D, U, ,, d, c, m)
+          var intRankNames = ["M", "C", "D", "U"];
+          var decRankNames = ["d", "c", "m"];
+
+          var rankRow = "<div class=\"cg-cell cg-rank\"></div>";
+          for (var ri = 0; ri < maxInt; ri++) {
+            var rankIdx = intRankNames.length - (maxInt - ri);
+            var rLabel = rankIdx >= 0 ? intRankNames[rankIdx] : "";
+            rankRow += "<div class=\"cg-cell cg-rank\">" + rLabel + "</div>";
+          }
+          if (maxDec > 0) {
+            rankRow += "<div class=\"cg-cell cg-rank\"></div>";
+            for (var rd = 0; rd < maxDec; rd++) {
+              var dLabel = rd < decRankNames.length ? decRankNames[rd] : "";
+              rankRow += "<div class=\"cg-cell cg-rank\">" + dLabel + "</div>";
+            }
+          }
+
+          // Ligne des retenues (pour l'addition)
+          var carryRow = "";
+          var hasAnyCarry = false;
+          for (var hc = 0; hc < carries.length; hc++) {
+            if (carries[hc] > 0) { hasAnyCarry = true; }
+          }
+          if (operatorChar === "+" && hasAnyCarry) {
+            carryRow += "<div class=\"cg-cell cg-carry\"></div>";
+            for (var ki = 0; ki < maxInt; ki++) {
+              var cValI = carries[ki];
+              carryRow += "<div class=\"cg-cell cg-carry\">" + (cValI ? "<span class=\"cg-carry-badge\">+1</span>" : "") + "</div>";
+            }
+            if (maxDec > 0) {
+              carryRow += "<div class=\"cg-cell cg-carry\"></div>";
+              for (var kd = 0; kd < maxDec; kd++) {
+                var cValD = carries[maxInt + kd];
+                carryRow += "<div class=\"cg-cell cg-carry\">" + (cValD ? "<span class=\"cg-carry-badge\">+1</span>" : "") + "</div>";
+              }
+            }
+          }
+
+          // Ligne opérande 1
+          var row1 = "<div class=\"cg-cell\"></div>";
+          var padInt1 = int1.padStart(maxInt, " ");
+          for (var i1 = 0; i1 < maxInt; i1++) {
+            row1 += "<div class=\"cg-cell\">" + (padInt1[i1] === " " ? "" : padInt1[i1]) + "</div>";
+          }
+          if (maxDec > 0) {
+            row1 += "<div class=\"cg-cell cg-comma\">,</div>";
+            for (var d1Idx = 0; d1Idx < maxDec; d1Idx++) {
+              if (d1Idx < dec1.length) {
+                row1 += "<div class=\"cg-cell\">" + dec1[d1Idx] + "</div>";
+              } else {
+                row1 += "<div class=\"cg-cell\"><span class=\"zero-added\" title=\"Zéro ajouté\">0</span></div>";
+              }
+            }
+          }
+
+          // Ligne opérande 2
+          var row2 = "<div class=\"cg-cell cg-op-sign\">" + operatorChar + "</div>";
+          var padInt2 = int2.padStart(maxInt, " ");
+          for (var i2 = 0; i2 < maxInt; i2++) {
+            row2 += "<div class=\"cg-cell\">" + (padInt2[i2] === " " ? "" : padInt2[i2]) + "</div>";
+          }
+          if (maxDec > 0) {
+            row2 += "<div class=\"cg-cell cg-comma\">,</div>";
+            for (var d2Idx = 0; d2Idx < maxDec; d2Idx++) {
+              if (d2Idx < dec2.length) {
+                row2 += "<div class=\"cg-cell\">" + dec2[d2Idx] + "</div>";
+              } else {
+                row2 += "<div class=\"cg-cell\"><span class=\"zero-added\" title=\"Zéro ajouté\">0</span></div>";
+              }
+            }
+          }
+
+          // Ligne résultat
+          var rowRes = "<div class=\"cg-cell cg-res\">=</div>";
+          var padResInt = resInt.padStart(maxInt, " ");
+          for (var ir = 0; ir < maxInt; ir++) {
+            rowRes += "<div class=\"cg-cell cg-res\">" + (padResInt[ir] === " " ? "" : padResInt[ir]) + "</div>";
+          }
+          if (maxDec > 0) {
+            rowRes += "<div class=\"cg-cell cg-comma\">,</div>";
+            for (var dr = 0; dr < maxDec; dr++) {
+              rowRes += "<div class=\"cg-cell cg-res\">" + resDec[dr] + "</div>";
+            }
+          }
+
+          var formattedEqResult = formatSpacedDecimal(maxDec > 0 ? resInt + "," + resDec : resInt);
+          var eqTitle = labelPrefix + " " + op1Str + " " + operatorChar + " " + op2Str + " = " + formattedEqResult;
+
+          var html = "";
+          html += "<div class=\"posed-op-card\">";
+          html += "<div class=\"posed-op-equation\">" + eqTitle + "</div>";
+          html += "<div class=\"col-grid-wrapper\">";
+          html += "<div class=\"col-grid\" style=\"grid-template-columns: " + gridTemplate + ";\">";
+          html += rankRow;
+          html += carryRow;
+          html += row1;
+          html += row2;
+          html += "<div class=\"cg-bar\"></div>";
+          html += rowRes;
+          html += "</div></div></div>";
+
+          return html;
+        }
+
+        /* ======================================================================
+           6. RENDU DES ÉNONCÉS ET CORRECTIONS POUR LES 5 EXERCICES
+           ====================================================================== */
+        function renderExercise(exoId) {
+          var stEl = document.getElementById("statement-exo-" + exoId);
+          var corrEl = document.getElementById("corr-exo-" + exoId);
+          var btnCorr = document.getElementById("btn-corr-" + exoId);
+          var d = state[exoId].data;
+          var isOpen = state[exoId].open;
+
+          if (exoId === 1) {
+            var startStr = formatHeure(d.h1, d.m1);
+            var endStr = formatHeure(d.h2, d.m2);
+            stEl.innerHTML =
+              "<p>Chloé est entrée dans la salle de cinéma à <span class=\"math-highlight\">" + startStr + "</span> et le film s'est terminé à <span class=\"math-highlight\">" + endStr + "</span>.</p>" +
+              "<p class=\"question-text\">Calculer la durée de la séance.</p>";
+
+            var minToNext = 60 - d.m1;
+            var nextH = d.h1 + 1;
+            var fullH = d.h2 - nextH;
+            var totalMin = minToNext + fullH * 60 + d.m2;
+            var durH = Math.floor(totalMin / 60);
+            var durM = totalMin % 60;
+            var durStr = formatDuree(durH, durM);
+
+            var stepsHtml = "";
+            stepsHtml += "<div class=\"corr-line\">• De <strong>" + startStr + "</strong> à <strong>" + formatHeure(nextH, 0) + "</strong> : <strong>" + minToNext + " min</strong></div>";
+            if (fullH > 0) {
+              stepsHtml += "<div class=\"corr-line\">• De <strong>" + formatHeure(nextH, 0) + "</strong> à <strong>" + formatHeure(d.h2, 0) + "</strong> : <strong>" + fullH + " h</strong></div>";
+            }
+            stepsHtml += "<div class=\"corr-line\">• De <strong>" + formatHeure(d.h2, 0) + "</strong> à <strong>" + endStr + "</strong> : <strong>" + d.m2 + " min</strong></div>";
+
+            var calcExpr = fullH > 0
+              ? (minToNext + " min + " + fullH + " h + " + d.m2 + " min = " + durStr)
+              : (minToNext + " min + " + d.m2 + " min = " + durStr);
+
+            corrEl.innerHTML =
+              "<div class=\"corr-header-tag\">✓ Correction détaillée</div>" +
+              buildTimelineExo1SVG(d) +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">Addition des durées intermédiaires :</div>" +
+                stepsHtml +
+                "<div class=\"corr-formula\">" + calcExpr + "</div>" +
+                "<div class=\"corr-conclusion\">La durée de la séance est de " + durStr + ".</div>" +
+              "</div>";
+          }
+
+          if (exoId === 2) {
+            var dureeStr = formatDuree(d.dh, d.dm);
+            var arrStr = formatHeure(d.harr, d.marr);
+            stEl.innerHTML =
+              "<p>Sarah prend le train avec son frère pour rejoindre leurs grands-parents. La durée totale du trajet est de <span class=\"math-highlight\">" + dureeStr + "</span>. Le train arrive en gare à <span class=\"math-highlight\">" + arrStr + "</span>.</p>" +
+              "<p class=\"question-text\">À quelle heure le train est-il parti ? Explique ton raisonnement.</p>";
+
+            var remMin = d.dm - d.marr;
+            var midH = d.harr - d.dh;
+            var depH = midH - 1;
+            var depM = 60 - remMin;
+            var depStr = formatHeure(depH, depM);
+
+            corrEl.innerHTML =
+              "<div class=\"corr-header-tag\">✓ Correction détaillée</div>" +
+              buildTimelineExo2SVG(d) +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">Raisonnement en remontant le temps depuis l'heure d'arrivée :</div>" +
+                "<div class=\"corr-line\">On part de l'heure d'arrivée (<strong>" + arrStr + "</strong>) et on remonte le temps de <strong>" + dureeStr + "</strong> :</div>" +
+                "<div class=\"corr-line\">1. On retire d'abord les <strong>" + d.marr + " min</strong> pour atteindre l'heure ronde : <span class=\"corr-formula\">" + arrStr + " − " + d.marr + " min = " + formatHeure(d.harr, 0) + "</span></div>" +
+                "<div class=\"corr-line\">2. On retire ensuite les <strong>" + d.dh + " h</strong> : <span class=\"corr-formula\">" + formatHeure(d.harr, 0) + " − " + d.dh + " h = " + formatHeure(midH, 0) + "</span></div>" +
+                "<div class=\"corr-line\">3. Il reste <strong>" + d.dm + " − " + d.marr + " = " + remMin + " min</strong> à retirer : <span class=\"corr-formula\">" + formatHeure(midH, 0) + " − " + remMin + " min = " + depStr + "</span></div>" +
+                "<div class=\"corr-conclusion\">Le train est parti à " + depStr + ".</div>" +
+              "</div>";
+          }
+
+          if (exoId === 3) {
+            var billetStr = d.billet + " €";
+            var renduStr = formatFr(d.rendu, 2) + " €";
+            var painStr = formatFr(d.pain, 2) + " €";
+            stEl.innerHTML =
+              "<p>À la boulangerie, Madame Martin achète une tarte aux fraises et un pain complet. Elle paie avec un billet de <span class=\"math-highlight\">" + billetStr + "</span> et la boulangère lui rend <span class=\"math-highlight\">" + renduStr + "</span>. Sachant que le pain complet coûte <span class=\"math-highlight\">" + painStr + "</span> :</p>" +
+              "<p class=\"question-text\">Quel est le prix de la tarte aux fraises ?</p>";
+
+            var totalDepense = Math.round((d.billet - d.rendu) * 100) / 100;
+            var prixTarte = Math.round((totalDepense - d.pain) * 100) / 100;
+
+            var op1 = buildColumnOperationHTML(String(d.billet), formatFr(d.rendu, 2), "−", "Étape 1 :");
+            var op2 = buildColumnOperationHTML(formatFr(totalDepense, 2), formatFr(d.pain, 2), "−", "Étape 2 :");
+
+            corrEl.innerHTML =
+              "<div class=\"corr-header-tag\">✓ Correction détaillée</div>" +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">Étape 1 : Calcul de la dépense totale à la boulangerie</div>" +
+                "<div class=\"corr-line\">On soustrait la monnaie rendue au billet de " + d.billet + " € (en écrivant " + d.billet + " = " + d.billet + ",00) :</div>" +
+                "<div class=\"posed-ops-container\">" + op1 + "</div>" +
+                "<div class=\"corr-line\" style=\"margin-top:8px;\">Madame Martin a payé <strong>" + formatFr(totalDepense, 2) + " €</strong> en tout.</div>" +
+              "</div>" +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">Étape 2 : Calcul du prix de la tarte aux fraises</div>" +
+                "<div class=\"corr-line\">On retire le prix du pain complet (" + painStr + ") de la dépense totale :</div>" +
+                "<div class=\"posed-ops-container\">" + op2 + "</div>" +
+                "<div class=\"corr-conclusion\">Le prix de la tarte aux fraises est de " + formatFr(prixTarte, 2) + " €.</div>" +
+              "</div>";
+          }
+
+          if (exoId === 4) {
+            var cagStr = formatFr(d.cagnotte, 1) + " €";
+            var carStr = formatFr(d.car, 1) + " €";
+            var trainStr = formatFr(d.train, 1) + " €";
+            stEl.innerHTML =
+              "<p>La coopérative d'une classe de 6ème dispose d'une cagnotte de <span class=\"math-highlight\">" + cagStr + "</span> pour organiser une sortie au musée. Le devis du transport en car s'élève à <span class=\"math-highlight\">" + carStr + "</span>.</p>" +
+              "<p class=\"question-text\">1. Combien d'argent manque-t-il à la classe pour payer ce transport ?</p>" +
+              "<p>Finalement, la classe décide de prendre le train régional, ce qui coûte <span class=\"math-highlight\">" + trainStr + "</span> pour l'ensemble du groupe.</p>" +
+              "<p class=\"question-text\">2. Quelle somme d'argent restera-t-il dans la cagnotte après avoir payé les billets de train ?</p>";
+
+            var manque = Math.round((d.car - d.cagnotte) * 10) / 10;
+            var reste = Math.round((d.cagnotte - d.train) * 10) / 10;
+
+            var opQ1 = buildColumnOperationHTML(formatFr(d.car, 1), formatFr(d.cagnotte, 1), "−", "Question 1 :");
+            var opQ2 = buildColumnOperationHTML(formatFr(d.cagnotte, 1), formatFr(d.train, 1), "−", "Question 2 :");
+
+            corrEl.innerHTML =
+              "<div class=\"corr-header-tag\">✓ Correction détaillée</div>" +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">1. Somme manquante pour le transport en car :</div>" +
+                "<div class=\"corr-line\">On calcule la différence entre le devis du car et la cagnotte :</div>" +
+                "<div class=\"posed-ops-container\">" + opQ1 + "</div>" +
+                "<div class=\"corr-conclusion\">Il manque " + formatFr(manque, 1) + " € à la classe pour payer le transport en car.</div>" +
+              "</div>" +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">2. Somme restante après le paiement des billets de train :</div>" +
+                "<div class=\"corr-line\">On soustrait le prix du train du montant de la cagnotte :</div>" +
+                "<div class=\"posed-ops-container\">" + opQ2 + "</div>" +
+                "<div class=\"corr-conclusion\">Il restera " + formatFr(reste, 1) + " € dans la cagnotte après avoir payé les billets de train.</div>" +
+              "</div>";
+          }
+
+          if (exoId === 5) {
+            stEl.innerHTML =
+              "<p class=\"question-text\">Poser et effectuer les opérations suivantes :</p>" +
+              "<div class=\"ops-list\">" +
+                "<div>1) " + d.a1 + " + " + d.a2 + " =</div>" +
+                "<div>2) " + d.s1 + " − " + d.s2 + " =</div>" +
+              "</div>";
+
+            var opAdd = buildColumnOperationHTML(d.a1, d.a2, "+", "1)");
+            var opSub = buildColumnOperationHTML(d.s1, d.s2, "−", "2)");
+
+            corrEl.innerHTML =
+              "<div class=\"corr-header-tag\">✓ Correction détaillée</div>" +
+              "<div class=\"corr-block\">" +
+                "<div class=\"corr-step-title\">Opérations posées en colonnes (virgules alignées) :</div>" +
+                "<div class=\"posed-ops-container\">" + opAdd + opSub + "</div>" +
+                "<div class=\"legend-zero\"><span class=\"zero-added\" style=\"width:20px;height:22px;font-size:13px;\">0</span> Zéro(s) ajouté(s) pour aligner les rangs</div>" +
+              "</div>";
+          }
+
+          if (isOpen) {
+            corrEl.classList.add("open");
+            btnCorr.classList.add("is-open");
+            btnCorr.textContent = "🙈 Masquer la correction";
+          } else {
+            corrEl.classList.remove("open");
+            btnCorr.classList.remove("is-open");
+            btnCorr.textContent = "👁️ Afficher la correction";
+          }
+        }
+
+        function renderAll() {
+          for (var i = 1; i <= 5; i++) {
+            renderExercise(i);
+          }
+        }
+
+        /* ======================================================================
+           7. NOTIFICATION DISCRÈTE & EXPORT HTML AUTONOME
+           ====================================================================== */
+        var toastTimeout = null;
+        function showToast(text) {
+          var toastEl = document.getElementById("toast-msg");
+          if (!toastEl) { return; }
+          toastEl.textContent = text;
+          toastEl.classList.add("visible");
+          if (toastTimeout) {
+            clearTimeout(toastTimeout);
+          }
+          toastTimeout = setTimeout(function () {
+            toastEl.classList.remove("visible");
+          }, 3200);
+        }
+
+        function downloadStandaloneStudentHTML() {
+          try {
+            var docClone = document.documentElement.cloneNode(true);
+            var dlBtn = docClone.querySelector("#btn-download-html");
+            if (dlBtn) {
+              dlBtn.remove();
+            }
+            var openPanels = docClone.querySelectorAll(".correction-panel");
+            for (var i = 0; i < openPanels.length; i++) {
+              openPanels[i].classList.remove("open");
+            }
+            var corrBtns = docClone.querySelectorAll(".btn-corr");
+            for (var j = 0; j < corrBtns.length; j++) {
+              corrBtns[j].classList.remove("is-open");
+              corrBtns[j].textContent = "👁️ Afficher la correction";
+            }
+            var toastClone = docClone.querySelector("#toast-msg");
+            if (toastClone) {
+              toastClone.classList.remove("visible");
+            }
+
+            var fullHtml = "<!DOCTYPE html>\n" + docClone.outerHTML;
+            var blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "entrainement-devoir4-6eme.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(function () {
+              URL.revokeObjectURL(url);
+            }, 1500);
+            showToast("Fichier entrainement-devoir4-6eme.html téléchargé !");
+          } catch (err) {
+            showToast("Téléchargement impossible dans cet aperçu.");
+          }
+        }
+
+        /* ======================================================================
+           8. INITIALISATION ET ÉCOUTEURS D'ÉVÉNEMENTS
+           ====================================================================== */
+        renderAll();
+
+        var container = document.getElementById("exercises-container");
+        if (container) {
+          container.addEventListener("click", function (event) {
+            var btn = event.target.closest("button[data-action]");
+            if (!btn) { return; }
+
+            var exoId = parseInt(btn.getAttribute("data-exo"), 10);
+            var action = btn.getAttribute("data-action");
+
+            if (action === "new") {
+              if (exoId === 1) { state[1].data = generateExo1(); }
+              if (exoId === 2) { state[2].data = generateExo2(); }
+              if (exoId === 3) { state[3].data = generateExo3(); }
+              if (exoId === 4) { state[4].data = generateExo4(); }
+              if (exoId === 5) { state[5].data = generateExo5(); }
+              state[exoId].open = false;
+              renderExercise(exoId);
+              showToast("Nouvel énoncé généré pour l'Exercice " + exoId + " !");
+            } else if (action === "corr") {
+              state[exoId].open = !state[exoId].open;
+              renderExercise(exoId);
+            }
+          });
+        }
+
+        var btnRegenAll = document.getElementById("btn-regen-all");
+        if (btnRegenAll) {
+          btnRegenAll.addEventListener("click", function () {
+            state[1].data = generateExo1();
+            state[2].data = generateExo2();
+            state[3].data = generateExo3();
+            state[4].data = generateExo4();
+            state[5].data = generateExo5();
+            for (var i = 1; i <= 5; i++) {
+              state[i].open = false;
+            }
+            renderAll();
+            showToast("Les 5 exercices ont été renouvelés !");
+          });
+        }
+
+        var btnDownload = document.getElementById("btn-download-html");
+        if (btnDownload) {
+          btnDownload.addEventListener("click", downloadStandaloneStudentHTML);
+        }
+      } catch (e) {
+        if (window.console && console.error) {
+          console.error("Erreur d'initialisation de la fiche :", e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
